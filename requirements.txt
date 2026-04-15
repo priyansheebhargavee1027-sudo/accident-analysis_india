@@ -1,0 +1,31 @@
+# Core Data
+pandas==2.2.0
+numpy==1.26.4
+openpyxl==3.1.2
+xlrd==2.0.1
+
+# Database
+sqlalchemy==2.0.28
+
+
+# Visualization
+plotly==5.20.0
+folium==0.16.0
+seaborn==0.13.2
+matplotlib==3.8.3
+branca==0.7.1
+
+# Dashboard
+streamlit==1.32.0
+streamlit-folium==0.18.0
+
+# Notebooks
+jupyterlab==4.1.2
+ipykernel==6.29.3
+
+# Utilities
+python-dotenv==1.0.1
+requests==2.31.0
+tqdm==4.66.2
+rich==13.7.1
+loguru==0.7.2

@@ -1,4 +1,4 @@
-# 🚦 India Traffic Accident Data Analysis
+#  India Traffic Accident Data Analysis
 
 [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -8,18 +8,18 @@
 
 ---
 
-## 📌 Project Overview
+##  Project Overview
 
 This project analyzes India's road accident data (sourced from MoRTH / data.gov.in) to:
 
-- 🗺️ Identify **geographic hotspots** (state, district, road type)
-- 🕐 Detect **time-based patterns** (night vs. day, weekday vs. weekend, monthly trends)
-- 📊 Visualize **severity & cause distributions**
-- 🧠 Generate **actionable safety recommendations**
+-  Identify **geographic hotspots** (state, district, road type)
+-  Detect **time-based patterns** (night vs. day, weekday vs. weekend, monthly trends)
+-  Visualize **severity & cause distributions**
+-  Generate **actionable safety recommendations**
 
 ---
 
-## 🗂️ Project Structure
+##  Project Structure
 
 ```
 india-traffic-accidents/
@@ -51,7 +51,7 @@ india-traffic-accidents/
 
 ---
 
-## 📦 Data Sources
+##  Data Sources
 
 | Source | Description | URL |
 |--------|-------------|-----|
@@ -64,7 +64,7 @@ india-traffic-accidents/
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### 1. Clone & Setup
 ```bash
@@ -97,31 +97,31 @@ jupyter lab notebooks/
 
 ---
 
-## 📊 Key Analyses
+##  Key Analyses
 
-### 🗺️ Hotspot Detection
+###  Hotspot Detection
 - Top 10 states & districts by accident frequency
 - Road-type risk scoring (NH, SH, MDR, Urban)
 - Folium choropleth maps
 
-### ⏰ Time-Based Patterns
+###  Time-Based Patterns
 - Hour-of-day accident distribution
 - Day vs. Night severity comparison
 - Monthly & seasonal trends
 - Weekday vs. weekend heatmaps
 
-### 🔍 Cause Analysis
+###  Cause Analysis
 - Top accident causes (overspeeding, drunk driving, road conditions)
 - Fatality rate by cause
 - Vehicle type breakdown
 
-### 💡 Safety Recommendations
+###  Safety Recommendations
 - Automated risk scoring per state
 - Evidence-based intervention suggestions
 
 ---
 
-## 🖥️ Dashboard (Streamlit)
+##  Dashboard (Streamlit)
 
 The interactive dashboard includes:
 - KPI cards (total accidents, fatalities, fatality rate)
@@ -132,7 +132,7 @@ The interactive dashboard includes:
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
@@ -146,7 +146,7 @@ The interactive dashboard includes:
 
 ---
 
-## 📈 Power BI Integration
+##  Power BI Integration
 
 Processed data is exported to `data/processed/powerbi_export.csv` — ready to import directly into Power BI for enterprise dashboards.
 
@@ -154,7 +154,7 @@ See `reports/powerbi_guide.md` for step-by-step setup.
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 1. Fork the repo
 2. Create a feature branch: `git checkout -b feature/new-analysis`
@@ -163,14 +163,23 @@ See `reports/powerbi_guide.md` for step-by-step setup.
 
 ---
 
-## 📜 License
+## License
 
 MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 
-## 🙏 Acknowledgements
+##  Acknowledgements
 
 - Ministry of Road Transport & Highways (MoRTH), India
 - National Crime Records Bureau (NCRB)
 - Open Data Initiative, data.gov.in
+
+##  How to Run
+
+```bash
+python3 -m pip install -r requirements.txt
+python3 scripts/ingest.py
+python3 scripts/clean.py
+python3 scripts/analyze.py
+streamlit run dashboard/app.py

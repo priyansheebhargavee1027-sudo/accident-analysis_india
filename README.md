@@ -188,7 +188,7 @@ streamlit run dashboard/app.py
 
 
 
-# India Traffic Accident Data Analysis
+## India Traffic Accident Data Analysis
 
 This project started with a simple question:
 **why do certain roads in India see more accidents than others?**

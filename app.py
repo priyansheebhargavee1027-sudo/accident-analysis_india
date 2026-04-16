@@ -15,7 +15,7 @@ from plotly.subplots import make_subplots
 import streamlit as st
 from pathlib import Path
 
-# ── Config ────────────────────────────────────────────────────────────────────
+
 ROOT     = Path(__file__).resolve().parent.parent
 DB_PATH  = ROOT / "data" / "accidents.db"
 PROC_DIR = ROOT / "data" / "processed"
@@ -28,7 +28,6 @@ st.set_page_config(
     initial_sidebar_state = "expanded",
 )
 
-# ── Custom CSS ────────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap');
@@ -59,7 +58,6 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ── Data Loading ──────────────────────────────────────────────────────────────
 
 @st.cache_data
 def load_data():
@@ -91,7 +89,7 @@ ACCENT = "#e94560"
 COLORS = px.colors.qualitative.Bold
 
 
-# ── Sidebar ───────────────────────────────────────────────────────────────────
+
 
 def sidebar_filters(df):
     st.sidebar.image("https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg", width=80)
@@ -122,13 +120,12 @@ def sidebar_filters(df):
     return df[mask]
 
 
-# ── Pages ─────────────────────────────────────────────────────────────────────
 
 def page_overview(df, kpis):
     st.title("🚦 India Traffic Accident Analysis")
     st.caption(f"Showing {len(df):,} records | Use sidebar to filter")
 
-    # KPI Row
+
     cols = st.columns(5)
     kpi_defs = [
         (f"{len(df):,}",                        "Total Accidents"),
@@ -148,7 +145,7 @@ def page_overview(df, kpis):
     st.markdown("<br>", unsafe_allow_html=True)
     c1, c2 = st.columns(2)
 
-    # Yearly trend
+
     with c1:
         st.markdown('<div class="section-header">📈 Yearly Trend</div>', unsafe_allow_html=True)
         yr = df.groupby("year").agg(accidents=("accident_id","count"), fatalities=("fatalities","sum")).reset_index()
@@ -164,7 +161,7 @@ def page_overview(df, kpis):
         )
         st.plotly_chart(fig, use_container_width=True)
 
-    # Severity pie
+
     with c2:
         st.markdown('<div class="section-header">🔴 Severity Distribution</div>', unsafe_allow_html=True)
         sev = df["severity"].value_counts().reset_index()
@@ -203,7 +200,7 @@ def page_hotspots(df):
                           coloraxis_showscale=False, xaxis_title="Fatality Rate (%)", yaxis_title="")
         st.plotly_chart(fig, use_container_width=True)
 
-    # Road type
+    
     st.markdown('<div class="section-header">Road Type Risk Matrix</div>', unsafe_allow_html=True)
     rt = df.groupby("road_type").agg(
         accidents=("accident_id","count"),
@@ -218,7 +215,7 @@ def page_hotspots(df):
     fig.update_layout(**PLOTLY_DARK, showlegend=False)
     st.plotly_chart(fig, use_container_width=True)
 
-    # Map
+ 
     st.markdown('<div class="section-header">📍 Accident Density Map (Sample)</div>', unsafe_allow_html=True)
     sample = df.sample(min(3000, len(df)), random_state=42)
     fig = px.scatter_mapbox(
@@ -237,7 +234,6 @@ def page_hotspots(df):
 def page_time(df):
     st.title("⏰ Time-Based Pattern Analysis")
 
-    # Hour distribution
     st.markdown('<div class="section-header">Accidents by Hour of Day</div>', unsafe_allow_html=True)
     hourly = df.groupby("hour").agg(
         accidents=("accident_id","count"),
@@ -277,7 +273,6 @@ def page_time(df):
         fig.update_layout(**PLOTLY_DARK, xaxis_title="Month", yaxis_title="Accidents")
         st.plotly_chart(fig, use_container_width=True)
 
-    # Weekday heatmap
     st.markdown('<div class="section-header">Weekday × Hour Accident Heatmap</div>', unsafe_allow_html=True)
     day_order = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
     heat = df.groupby(["weekday","hour"]).size().reset_index(name="accidents")
@@ -353,7 +348,6 @@ def page_data(df):
                        "filtered_accidents.csv", "text/csv")
 
 
-# ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
     df   = load_data()
@@ -361,11 +355,11 @@ def main():
     df   = sidebar_filters(df)
 
     pages = {
-        "📊 Overview":         lambda: page_overview(df, kpis),
-        "🗺️ Hotspots":         lambda: page_hotspots(df),
-        "⏰ Time Patterns":    lambda: page_time(df),
-        "🔍 Causes & Vehicles":lambda: page_causes(df),
-        "📋 Data Explorer":    lambda: page_data(df),
+        "Overview":         lambda: page_overview(df, kpis),
+        " Hotspots":         lambda: page_hotspots(df),
+        "Time Patterns":    lambda: page_time(df),
+        "Causes & Vehicles": lambda: page_causes(df),
+        " Data Explorer":    lambda: page_data(df),
     }
 
     st.sidebar.markdown("---")
